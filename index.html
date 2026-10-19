@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arquitetura de Software &amp; Gestão de Projetos</title>
+  <meta name="description" content="Estudo de conceitos de arquitetura de software e seu impacto na gestão de projetos, baseado em artigos de Martin Fowler.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-content">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">AS</div>
+        <span data-pt="ArqSoft" data-en="ArqSoft">ArqSoft</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="active" data-pt="Início" data-en="Home">Início</a></li>
+        <li><a href="monolith-first.html" data-pt="Monolith First" data-en="Monolith First">Monolith First</a></li>
+        <li><a href="application-boundary.html" data-pt="App Boundary" data-en="App Boundary">App Boundary</a></li>
+        <li><a href="serverless.html" data-pt="Serverless" data-en="Serverless">Serverless</a></li>
+      </ul>
+      <div class="lang-toggle">
+        <button class="lang-btn active" id="btnPt" onclick="setLang('pt')">PT</button>
+        <button class="lang-btn" id="btnEn" onclick="setLang('en')">EN</button>
+      </div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        <span data-pt="Arquitetura de Software" data-en="Software Architecture">Arquitetura de Software</span>
+      </div>
+      <h1 data-pt="Conceitos de Arquitetura &amp; Gestão de Projetos" data-en="Architecture Concepts &amp; Project Management">Conceitos de Arquitetura &amp; Gestão de Projetos</h1>
+      <p class="hero-subtitle" data-pt="Explorando três conceitos essenciais de Martin Fowler e seu impacto direto no planejamento, custos, equipe e riscos de projetos de software." data-en="Exploring three essential Martin Fowler concepts and their direct impact on planning, costs, team, and software project risks.">Explorando três conceitos essenciais de Martin Fowler e seu impacto direto no planejamento, custos, equipe e riscos de projetos de software.</p>
+    </div>
+    <figure class="hero-illustration">
+      <!-- Foto: Vitaly Gariev / Unsplash — Unsplash License: https://unsplash.com/photos/people-collaborating-on-project-plan-v89zhr0iBFY -->
+      <img src="assets/img/equipe-planejamento-software.jpg" alt="Duas pessoas colaborando no planejamento de um projeto diante de um quadro com notas adesivas." data-alt-pt="Duas pessoas colaborando no planejamento de um projeto diante de um quadro com notas adesivas." data-alt-en="Two people collaborating on a project plan in front of a board covered with sticky notes." decoding="async" fetchpriority="low">
+    </figure>
+  </section>
+
+  <!-- Posts Grid -->
+  <section class="posts-grid">
+    <!-- Card 1 — Monolith First -->
+    <a href="monolith-first.html" class="post-card reveal">
+      <div class="card-number">01</div>
+      <span class="card-tag" data-pt="Arquitetura" data-en="Architecture">Arquitetura</span>
+      <h3 data-pt="Monolith First" data-en="Monolith First">Monolith First</h3>
+      <p data-pt="Comece com um monólito bem estruturado e decomponha para microsserviços apenas quando as fronteiras de domínio estiverem claramente definidas." data-en="Start with a well-structured monolith and decompose into microservices only when domain boundaries are clearly defined.">Comece com um monólito bem estruturado e decomponha para microsserviços apenas quando as fronteiras de domínio estiverem claramente definidas.</p>
+      <div class="card-footer">
+        <span class="card-link" data-pt="Ler mais" data-en="Read more">Ler mais <span class="arrow">→</span></span>
+        <span style="font-size:0.75rem;color:var(--text-muted)">Martin Fowler</span>
+      </div>
+    </a>
+
+    <!-- Card 2 — Application Boundary -->
+    <a href="application-boundary.html" class="post-card reveal">
+      <div class="card-number">02</div>
+      <span class="card-tag" data-pt="Fronteiras" data-en="Boundaries">Fronteiras</span>
+      <h3 data-pt="Application Boundary" data-en="Application Boundary">Application Boundary</h3>
+      <p data-pt="O que realmente delimita uma 'aplicação': uma fronteira mais social (equipe e organização) do que puramente técnica." data-en="What really defines an 'application': a boundary that is more social (team and organization) than purely technical.">O que realmente delimita uma "aplicação": uma fronteira mais social (equipe e organização) do que puramente técnica.</p>
+      <div class="card-footer">
+        <span class="card-link" data-pt="Ler mais" data-en="Read more">Ler mais <span class="arrow">→</span></span>
+        <span style="font-size:0.75rem;color:var(--text-muted)">Martin Fowler</span>
+      </div>
+    </a>
+
+    <!-- Card 3 — Serverless -->
+    <a href="serverless.html" class="post-card reveal">
+      <div class="card-number">03</div>
+      <span class="card-tag" data-pt="Cloud" data-en="Cloud">Cloud</span>
+      <h3 data-pt="Serverless Architectures" data-en="Serverless Architectures">Serverless Architectures</h3>
+      <p data-pt="O que é serverless (BaaS e FaaS), como funciona, quais seus benefícios e limitações para projetos modernos." data-en="What serverless is (BaaS and FaaS), how it works, and its benefits and limitations for modern projects.">O que é serverless (BaaS e FaaS), como funciona, quais seus benefícios e limitações para projetos modernos.</p>
+      <div class="card-footer">
+        <span class="card-link" data-pt="Ler mais" data-en="Read more">Ler mais <span class="arrow">→</span></span>
+        <span style="font-size:0.75rem;color:var(--text-muted)">Mike Roberts</span>
+      </div>
+    </a>
+  </section>
+
+  <!-- Team Section -->
+  <section class="team-section reveal">
+    <p class="section-label" data-pt="Equipe" data-en="Team">Equipe</p>
+    <h2 class="section-title" data-pt="Integrantes do Grupo" data-en="Team Members">Integrantes do Grupo</h2>
+    <div class="team-grid">
+      <div class="team-member">
+        <div class="member-avatar">EW</div>
+        <div>
+          <div class="member-name"><a href="https://www.linkedin.com/in/eduardo-walace/" target="_blank" rel="noopener noreferrer">Eduardo Walace</a></div>
+          <div class="member-role" data-pt="Integrante" data-en="Member">Integrante</div>
+        </div>
+      </div>
+      <div class="team-member">
+        <div class="member-avatar">DR</div>
+        <div>
+          <div class="member-name"><a href="https://www.linkedin.com/in/davi-rocha-de-farias/" target="_blank" rel="noopener noreferrer">Davi Rocha</a></div>
+          <div class="member-role" data-pt="Integrante" data-en="Member">Integrante</div>
+        </div>
+      </div>
+      <div class="team-member">
+        <div class="member-avatar">LA</div>
+        <div>
+          <div class="member-name"><a href="https://www.linkedin.com/in/lucas-azeredo-gon%C3%A7alves-a079a8349/" target="_blank" rel="noopener noreferrer">Lucas Azeredo</a></div>
+          <div class="member-role" data-pt="Integrante" data-en="Member">Integrante</div>
+        </div>
+      </div>
+      <div class="team-member">
+        <div class="member-avatar">LK</div>
+        <div>
+          <div class="member-name"><a href="https://www.linkedin.com/in/lucas-kauan-b6a09033a/" target="_blank" rel="noopener noreferrer">Lucas Kauan</a></div>
+          <div class="member-role" data-pt="Integrante" data-en="Member">Integrante</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p data-pt="Arquitetura de Software &amp; Gestão de Projetos — 2026" data-en="Software Architecture &amp; Project Management — 2026">Arquitetura de Software &amp; Gestão de Projetos — 2026</p>
+    <div class="ai-disclaimer">
+      <span>AI /</span>
+      <span data-pt="Conteúdo gerado com auxílio de IA — revisado pela equipe" data-en="Content generated with AI assistance — reviewed by the team">Conteúdo gerado com auxílio de IA — revisado pela equipe</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

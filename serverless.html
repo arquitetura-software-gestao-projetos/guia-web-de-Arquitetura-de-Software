@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Serverless Architectures — Arquitetura de Software</title>
+  <meta name="description" content="Análise do conceito Serverless Architectures de Mike Roberts e Martin Fowler: BaaS, FaaS, benefícios e limitações.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-content">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">AS</div>
+        <span>ArqSoft</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" data-pt="Início" data-en="Home">Início</a></li>
+        <li><a href="monolith-first.html" data-pt="Monolith First" data-en="Monolith First">Monolith First</a></li>
+        <li><a href="application-boundary.html" data-pt="App Boundary" data-en="App Boundary">App Boundary</a></li>
+        <li><a href="serverless.html" class="active" data-pt="Serverless" data-en="Serverless">Serverless</a></li>
+      </ul>
+      <div class="lang-toggle">
+        <button class="lang-btn active" id="btnPt" onclick="setLang('pt')">PT</button>
+        <button class="lang-btn" id="btnEn" onclick="setLang('en')">EN</button>
+      </div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
+    </div>
+  </nav>
+
+  <!-- Article Hero -->
+  <header class="article-hero cyan" data-index="3">
+    <div class="article-hero-inner">
+      <div class="article-meta">
+        <span class="article-tag" data-pt="Cloud" data-en="Cloud">Cloud</span>
+        <span class="article-author">Mike Roberts · 2018</span>
+      </div>
+      <h1 data-pt="Serverless Architectures" data-en="Serverless Architectures">Serverless Architectures</h1>
+      <p class="subtitle" data-pt="Arquiteturas que incorporam serviços de terceiros (BaaS) e/ou código próprio executado em funções gerenciadas (FaaS), reduzindo a necessidade de manter servidores e processos tradicionais sempre ativos, mas aumentando a dependência de fornecedores." data-en="Architectures that incorporate third-party services (BaaS) and/or custom code run in managed functions (FaaS), reducing the need to maintain traditional always-on servers and processes, but increasing vendor dependency.">Arquiteturas que incorporam serviços de terceiros (BaaS) e/ou código próprio executado em funções gerenciadas (FaaS), reduzindo a necessidade de manter servidores e processos tradicionais sempre ativos, mas aumentando a dependência de fornecedores.</p>
+    </div>
+  </header>
+
+  <!-- Article Body -->
+  <main class="article-body">
+
+    <!-- Central Idea -->
+    <section class="content-section reveal">
+      <h2><span class="icon">01</span> <span data-pt="Ideia Central" data-en="Core Idea">Ideia Central</span></h2>
+      <p data-pt="O artigo de Mike Roberts (publicado em martinfowler.com) explica em profundidade o que são arquiteturas serverless. O conceito se divide em dois pilares:" data-en="Mike Roberts' article (published on martinfowler.com) explains in depth what serverless architectures are. The concept is divided into two pillars:">O artigo de Mike Roberts (publicado em martinfowler.com) explica em profundidade o que são arquiteturas serverless. O conceito se divide em dois pilares:</p>
+
+      <div class="highlight-box cyan">
+        <p data-pt="O termo não significa ausência de servidores: o hardware e os processos continuam existindo, mas sua gestão é delegada ao provedor. O artigo usa serverless para abranger BaaS, que oferece componentes prontos como autenticação e banco de dados, e FaaS, que executa código próprio em funções gerenciadas e acionadas por eventos." data-en="The term does not mean that servers are absent: hardware and processes still exist, but their management is delegated to the provider. The article uses serverless to cover BaaS, which provides ready-made components such as authentication and databases, and FaaS, which runs custom code in managed, event-triggered functions.">O termo não significa ausência de servidores: o hardware e os processos continuam existindo, mas sua gestão é delegada ao provedor. O artigo usa serverless para abranger BaaS, que oferece componentes prontos como autenticação e banco de dados, e FaaS, que executa código próprio em funções gerenciadas e acionadas por eventos.</p>
+      </div>
+
+      <p data-pt="Backend as a Service (BaaS): a aplicação consome serviços terceirizados para funcionalidades que antes seriam implementadas no servidor — como autenticação (Auth0, AWS Cognito), banco de dados (Firebase, DynamoDB) e armazenamento de arquivos (S3). O cliente (geralmente uma SPA ou app mobile) acessa esses serviços diretamente." data-en="Backend as a Service (BaaS): the application consumes third-party services for features that would previously be implemented on the server — such as authentication (Auth0, AWS Cognito), database (Firebase, DynamoDB) and file storage (S3). The client (usually a SPA or mobile app) accesses these services directly."><strong>Backend as a Service (BaaS)</strong>: a aplicação consome serviços terceirizados para funcionalidades que antes seriam implementadas no servidor — como autenticação (Auth0, AWS Cognito), banco de dados (Firebase, DynamoDB) e armazenamento de arquivos (S3). O cliente (geralmente uma SPA ou app mobile) acessa esses serviços diretamente.</p>
+
+      <p data-pt="Functions as a Service (FaaS): a lógica do servidor ainda é escrita pelo desenvolvedor, mas roda em containers efêmeros, stateless e gerenciados pelo provedor. Cada função é acionada por um evento (HTTP request, mensagem em fila, upload de arquivo) e o provedor gerencia automaticamente o scaling. AWS Lambda, Google Cloud Functions e Azure Functions são exemplos." data-en="Functions as a Service (FaaS): server-side logic is still written by the developer, but runs in ephemeral, stateless containers managed by the provider. Each function is triggered by an event (HTTP request, queue message, file upload) and the provider automatically manages scaling. AWS Lambda, Google Cloud Functions and Azure Functions are examples."><strong>Functions as a Service (FaaS)</strong>: a lógica do servidor ainda é escrita pelo desenvolvedor, mas roda em containers efêmeros, stateless e gerenciados pelo provedor. Cada função é acionada por um evento (HTTP request, mensagem em fila, upload de arquivo) e o provedor gerencia automaticamente o scaling. AWS Lambda, Google Cloud Functions e Azure Functions são exemplos.</p>
+
+      <p data-pt="No FaaS, não se deve presumir que dados mantidos na memória ou no disco local persistirão entre invocações; o estado necessário deve ficar em um serviço externo. Também existem limites de duração e possíveis atrasos de inicialização (“cold starts”), que variam conforme o provedor e a configuração. O artigo explica o uso de API gateways para chamadas HTTP, mas nem toda função precisa ser acionada por HTTP." data-en="With FaaS, data held in memory or local disk should not be assumed to persist between invocations; required state should be stored in an external service. There are also execution-duration limits and possible startup delays (“cold starts”), which vary by provider and configuration. The article explains API gateways for HTTP calls, but not every function needs to be triggered by HTTP.">No FaaS, não se deve presumir que dados mantidos na memória ou no disco local persistirão entre invocações; o estado necessário deve ficar em um serviço externo. Também existem limites de duração e possíveis atrasos de inicialização (“cold starts”), que variam conforme o provedor e a configuração. O artigo explica o uso de API gateways para chamadas HTTP, mas nem toda função precisa ser acionada por HTTP.</p>
+    </section>
+
+    <section class="diagram-section reveal" aria-labelledby="diagram-title">
+      <div class="diagram-heading">
+        <h2 id="diagram-title" data-pt="Evento, função e serviços gerenciados" data-en="Event, function and managed services">Evento, função e serviços gerenciados</h2>
+        <span>FIG. 03 / SERVERLESS FLOW</span>
+      </div>
+      <figure class="architecture-plate">
+        <svg viewBox="0 0 720 240" role="img" aria-labelledby="serverless-svg-title serverless-svg-desc">
+          <title id="serverless-svg-title">Fluxo de uma arquitetura serverless</title>
+          <desc id="serverless-svg-desc">Uma requisição passa por um gateway, aciona uma função e conecta-se a serviços gerenciados de dados e autenticação.</desc>
+          <defs><marker id="serverless-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="#456B78"/></marker></defs>
+          <g fill="none" stroke="#1F3A4D" stroke-width="1.2"><rect x="20" y="75" width="112" height="76" fill="#E9E4D8"/><rect x="172" y="75" width="116" height="76" fill="#DCE7E8"/><rect x="332" y="75" width="126" height="76" fill="#F3DFD4"/><rect x="512" y="40" width="180" height="62" fill="#DCE7E8"/><rect x="512" y="124" width="180" height="62" fill="#FFFDF7"/></g>
+          <g stroke="#456B78" stroke-width="1.8" fill="none" marker-end="url(#serverless-arrow)"><path d="M132 113H166"/><path d="M288 113H326"/><path d="M458 103L506 73"/><path d="M458 124L506 154"/></g>
+          <g fill="#1F3A4D" font-family="monospace" text-anchor="middle"><text x="76" y="101" font-size="11">REQUEST</text><text x="76" y="120" font-size="9">HTTP / EVENT</text><text x="230" y="101" font-size="11">API GATEWAY</text><text x="230" y="120" font-size="9">ROUTING</text><text x="395" y="101" font-size="11">FUNCTION</text><text x="395" y="120" font-size="9">FaaS / STATELESS</text><text x="602" y="65" font-size="11">DATABASE</text><text x="602" y="82" font-size="9">MANAGED DATA</text><text x="602" y="149" font-size="11">AUTH / STORAGE</text><text x="602" y="166" font-size="9">BaaS SERVICES</text></g>
+          <g fill="#53616B" font-family="monospace" font-size="10"><text x="20" y="28">TRIGGER</text><text x="332" y="28">COMPUTE ON DEMAND</text><text x="512" y="215">PROVIDER-MANAGED</text></g>
+          <path d="M20 197H458" stroke="#D45D35" stroke-width="1" stroke-dasharray="3 5"/><text x="20" y="216" fill="#9D4427" font-family="monospace" font-size="10">SCALE WITH DEMAND</text>
+        </svg>
+        <figcaption><span>ARCHITECTURE NOTE / 03</span><span data-pt="O provedor gerencia a infraestrutura" data-en="The provider manages the infrastructure">O provedor gerencia a infraestrutura</span></figcaption>
+      </figure>
+    </section>
+
+    <!-- Pros and Cons -->
+    <section class="content-section reveal">
+      <h2><span class="icon">02</span> <span data-pt="Vantagens e Desvantagens" data-en="Advantages and Disadvantages">Vantagens e Desvantagens</span></h2>
+      <p data-pt="Os benefícios e limitações abaixo são sintetizados do artigo. Seus efeitos concretos dependem do tipo de aplicação, do perfil de tráfego e dos serviços escolhidos." data-en="The benefits and limitations below are summarized from the article. Their practical effects depend on the application type, traffic profile, and chosen services.">Os benefícios e limitações abaixo são sintetizados do artigo. Seus efeitos concretos dependem do tipo de aplicação, do perfil de tráfego e dos serviços escolhidos.</p>
+      <div class="pros-cons">
+        <div class="pros-card">
+          <h3><span data-pt="Vantagens" data-en="Advantages">Vantagens</span></h3>
+          <ul>
+            <li data-pt="No FaaS, a cobrança pelo tempo de computação utilizado pode reduzir custos quando a carga é pequena ou variável, pois não é necessário manter capacidade dedicada ociosa." data-en="With FaaS, charging for compute time used can reduce costs for small or variable workloads because dedicated idle capacity does not need to be maintained.">No FaaS, a cobrança pelo tempo de computação utilizado pode reduzir custos quando a carga é pequena ou variável, pois não é necessário manter capacidade dedicada ociosa.</li>
+            <li data-pt="Escalabilidade automática e granular — cada função escala independentemente." data-en="Automatic and granular scalability — each function scales independently.">Escalabilidade automática e granular — cada função escala independentemente.</li>
+            <li data-pt="Menor complexidade operacional: sem gestão de servidores, patches de OS, ou configuração de auto-scaling groups." data-en="Lower operational complexity: no server management, OS patches, or auto-scaling group configuration.">Menor complexidade operacional: sem gestão de servidores, patches de OS, ou configuração de auto-scaling groups.</li>
+            <li data-pt="BaaS pode reduzir o trabalho de desenvolvimento ao oferecer componentes prontos, como autenticação e banco de dados, sem que a equipe precise implementar tudo do zero." data-en="BaaS can reduce development work by providing ready-made components such as authentication and databases, without the team having to build everything from scratch.">BaaS pode reduzir o trabalho de desenvolvimento ao oferecer componentes prontos, como autenticação e banco de dados, sem que a equipe precise implementar tudo do zero.</li>
+            <li data-pt="Deploy de funções individuais é simples e rápido, facilitando experimentação contínua." data-en="Deploying individual functions is simple and fast, facilitating continuous experimentation.">Deploy de funções individuais é simples e rápido, facilitando experimentação contínua.</li>
+            <li data-pt="Pode reduzir o tempo até a entrega e facilitar experimentos, sobretudo quando serviços prontos ou funções gerenciadas eliminam trabalho de infraestrutura e implantação." data-en="It can shorten time to delivery and facilitate experimentation, especially when ready-made services or managed functions reduce infrastructure and deployment work.">Pode reduzir o tempo até a entrega e facilitar experimentos, sobretudo quando serviços prontos ou funções gerenciadas eliminam trabalho de infraestrutura e implantação.</li>
+          </ul>
+        </div>
+        <div class="cons-card">
+          <h3><span data-pt="Desvantagens" data-en="Disadvantages">Desvantagens</span></h3>
+          <ul>
+            <li data-pt="Vendor lock-in significativo: migrar de AWS Lambda para outra plataforma pode exigir reescrita." data-en="Significant vendor lock-in: migrating from AWS Lambda to another platform may require rewriting.">Vendor lock-in significativo: migrar de AWS Lambda para outra plataforma pode exigir reescrita.</li>
+            <li data-pt="Cold starts podem acrescentar latência, e seu impacto depende da sensibilidade da aplicação ao tempo de resposta." data-en="Cold starts can add latency, and their impact depends on the application's response-time sensitivity.">Cold starts podem acrescentar latência, e seu impacto depende da sensibilidade da aplicação ao tempo de resposta.</li>
+            <li data-pt="O estado que precisa persistir deve ser armazenado fora da função; não se deve contar com a memória ou o disco local entre invocações." data-en="State that must persist should be stored outside the function; local memory or disk should not be relied on between invocations.">O estado que precisa persistir deve ser armazenado fora da função; não se deve contar com a memória ou o disco local entre invocações.</li>
+            <li data-pt="Debugging e testes locais são mais complexos — difícil replicar o ambiente cloud fielmente." data-en="Debugging and local testing are more complex — difficult to faithfully replicate the cloud environment.">Debugging e testes locais são mais complexos — difícil replicar o ambiente cloud fielmente.</li>
+            <li data-pt="Limites de duração podem exigir dividir ou redesenhar tarefas longas; isso não torna toda arquitetura serverless inviável para processamento em lote." data-en="Execution-duration limits may require long tasks to be split or redesigned; they do not make every serverless architecture unsuitable for batch processing.">Limites de duração podem exigir dividir ou redesenhar tarefas longas; isso não torna toda arquitetura serverless inviável para processamento em lote.</li>
+            <li data-pt="Há questões de segurança a avaliar, especialmente ao combinar vários fornecedores ou permitir que clientes acessem diretamente serviços BaaS. Problemas de multitenancy são possíveis em serviços menos maduros, não uma falha universal do serverless." data-en="Security concerns need evaluation, especially when combining vendors or allowing clients to access BaaS services directly. Multitenancy problems are possible in less mature services, not a universal serverless flaw.">Há questões de segurança a avaliar, especialmente ao combinar vários fornecedores ou permitir que clientes acessem diretamente serviços BaaS. Problemas de multitenancy são possíveis em serviços menos maduros, não uma falha universal do serverless.</li>
+            <li data-pt="Em uma arquitetura BaaS completa, parte da lógica precisa ser repetida nos diferentes clientes (por exemplo, web, iOS e Android), e há menos oportunidade de otimizar o servidor para cada cliente." data-en="In a full BaaS architecture, some logic must be repeated across different clients (for example, web, iOS and Android), with fewer opportunities to optimize the server for each client.">Em uma arquitetura BaaS completa, parte da lógica precisa ser repetida nos diferentes clientes (por exemplo, web, iOS e Android), e há menos oportunidade de otimizar o servidor para cada cliente.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Project Management Impact -->
+    <section class="content-section reveal">
+      <h2><span class="icon">03</span> <span data-pt="Impacto na Gestão do Projeto" data-en="Project Management Impact">Impacto na Gestão do Projeto</span></h2>
+      <p data-pt="A adoção de serverless muda fundamentalmente como se planeja e se executa um projeto de software:" data-en="The adoption of serverless fundamentally changes how a software project is planned and executed:">A adoção de serverless muda fundamentalmente como se planeja e se executa um projeto de software:</p>
+      <div class="impact-grid">
+        <div class="impact-item">
+          <div class="impact-icon">01 /</div>
+          <div class="impact-label" data-pt="Prazo" data-en="Timeline">Prazo</div>
+          <p class="impact-text" data-pt="BaaS e FaaS podem reduzir trabalho de infraestrutura, empacotamento e implantação e facilitar experimentos rápidos. O efeito no prazo depende do produto, da integração entre serviços, das ferramentas e da experiência da equipe; não há um prazo universal garantido." data-en="BaaS and FaaS can reduce infrastructure, packaging and deployment work and make rapid experimentation easier. The effect on timelines depends on the product, service integration, tooling and team experience; no universal delivery time is guaranteed.">BaaS e FaaS podem reduzir trabalho de infraestrutura, empacotamento e implantação e facilitar experimentos rápidos. O efeito no prazo depende do produto, da integração entre serviços, das ferramentas e da experiência da equipe; não há um prazo universal garantido.</p>
+        </div>
+        <div class="impact-item">
+          <div class="impact-icon">02 /</div>
+          <div class="impact-label" data-pt="Custo" data-en="Cost">Custo</div>
+          <p class="impact-text" data-pt="A cobrança por uso pode reduzir custos em cargas pequenas, intermitentes ou com picos, pois a capacidade acompanha a demanda. Em cargas constantes e bem aproveitadas, FaaS pode não trazer economia e até custar mais. A gestão deve comparar preços reais do provedor com alternativas equivalentes." data-en="Usage-based pricing can reduce costs for small, intermittent or spiky workloads because capacity follows demand. For steady, highly utilized workloads, FaaS may not save money and can even cost more. Project management should compare actual provider prices with equivalent alternatives.">A cobrança por uso pode reduzir custos em cargas pequenas, intermitentes ou com picos, pois a capacidade acompanha a demanda. Em cargas constantes e bem aproveitadas, FaaS pode não trazer economia e até custar mais. A gestão deve comparar preços reais do provedor com alternativas equivalentes.</p>
+        </div>
+        <div class="impact-item">
+          <div class="impact-icon">03 /</div>
+          <div class="impact-label" data-pt="Equipe" data-en="Team">Equipe</div>
+          <p class="impact-text" data-pt="A equipe deixa de gerenciar parte da infraestrutura subjacente, mas as responsabilidades de operações não desaparecem: monitoramento, implantação, segurança, rede, suporte, depuração em produção e escalabilidade continuam necessários. A equipe também precisa compreender funções orientadas a eventos e o tratamento de estado externo." data-en="The team no longer manages some of the underlying infrastructure, but operational responsibilities do not disappear: monitoring, deployment, security, networking, support, production debugging and scaling are still needed. The team also needs to understand event-driven functions and external state management.">A equipe deixa de gerenciar parte da infraestrutura subjacente, mas as responsabilidades de operações não desaparecem: monitoramento, implantação, segurança, rede, suporte, depuração em produção e escalabilidade continuam necessários. A equipe também precisa compreender funções orientadas a eventos e o tratamento de estado externo.</p>
+        </div>
+        <div class="impact-item">
+          <div class="impact-icon">04 /</div>
+          <div class="impact-label" data-pt="Riscos" data-en="Risks">Riscos</div>
+          <p class="impact-text" data-pt="Os riscos incluem dependência do fornecedor (mudanças de preço, limites ou APIs), questões de segurança e maior dificuldade de monitoramento e depuração em sistemas distribuídos. Em BaaS acessado diretamente pelo cliente, é preciso configurar autorização cuidadosamente, pois não há a mesma barreira de um servidor próprio. Medidas de controle de consumo e alertas são recomendações de gestão da equipe, não prescrições específicas do artigo." data-en="Risks include vendor dependence (price, limit or API changes), security concerns, and more difficult monitoring and debugging in distributed systems. When a BaaS database is accessed directly by the client, authorization must be configured carefully because the protective barrier of a custom server is absent. Usage controls and alerts are management recommendations from the team, not specific prescriptions in the article.">Os riscos incluem dependência do fornecedor (mudanças de preço, limites ou APIs), questões de segurança e maior dificuldade de monitoramento e depuração em sistemas distribuídos. Em BaaS acessado diretamente pelo cliente, é preciso configurar autorização cuidadosamente, pois não há a mesma barreira de um servidor próprio. Medidas de controle de consumo e alertas são recomendações de gestão da equipe, não prescrições específicas do artigo.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Original Link -->
+    <section class="content-section reveal">
+      <h2><span class="icon">04</span> <span data-pt="Post Original" data-en="Original Post">Post Original</span></h2>
+      <a href="https://martinfowler.com/articles/serverless.html" target="_blank" rel="noopener noreferrer" class="original-link">
+        <span data-pt="Ler o artigo original em martinfowler.com" data-en="Read the original article on martinfowler.com">Ler o artigo original em martinfowler.com</span>
+        <span class="arrow">→</span>
+      </a>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p data-pt="Arquitetura de Software &amp; Gestão de Projetos — 2026" data-en="Software Architecture &amp; Project Management — 2026">Arquitetura de Software &amp; Gestão de Projetos — 2026</p>
+    <div class="ai-disclaimer">
+      <span>⚠️</span>
+      <span data-pt="Conteúdo gerado com auxílio de IA — revisado pela equipe" data-en="Content generated with AI assistance — reviewed by the team">Conteúdo gerado com auxílio de IA — revisado pela equipe</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

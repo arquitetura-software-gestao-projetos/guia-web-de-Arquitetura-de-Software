@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monolith First — Arquitetura de Software</title>
+  <meta name="description" content="Análise do conceito Monolith First de Martin Fowler: começar com um monólito e decompor apenas quando as fronteiras estiverem claras.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-content">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">AS</div>
+        <span>ArqSoft</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" data-pt="Início" data-en="Home">Início</a></li>
+        <li><a href="monolith-first.html" class="active" data-pt="Monolith First" data-en="Monolith First">Monolith First</a></li>
+        <li><a href="application-boundary.html" data-pt="App Boundary" data-en="App Boundary">App Boundary</a></li>
+        <li><a href="serverless.html" data-pt="Serverless" data-en="Serverless">Serverless</a></li>
+      </ul>
+      <div class="lang-toggle">
+        <button class="lang-btn active" id="btnPt" onclick="setLang('pt')">PT</button>
+        <button class="lang-btn" id="btnEn" onclick="setLang('en')">EN</button>
+      </div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
+    </div>
+  </nav>
+
+  <!-- Article Hero -->
+  <header class="article-hero violet" data-index="1">
+    <div class="article-hero-inner">
+      <div class="article-meta">
+        <span class="article-tag" data-pt="Arquitetura" data-en="Architecture">Arquitetura</span>
+        <span class="article-author">Martin Fowler · 2015</span>
+      </div>
+      <h1 data-pt="Monolith First" data-en="Monolith First">Monolith First</h1>
+      <p class="subtitle" data-pt="Ir diretamente para microsserviços é arriscado — considere construir um sistema monolítico primeiro e dividir quando (e se) necessário." data-en="Going directly to microservices is risky — consider building a monolithic system first and split when (and if) you need to.">Ir diretamente para microsserviços é arriscado — considere construir um sistema monolítico primeiro e dividir quando (e se) necessário.</p>
+    </div>
+  </header>
+
+  <!-- Article Body -->
+  <main class="article-body">
+
+    <!-- Central Idea -->
+    <section class="content-section reveal">
+      <h2><span class="icon">01</span> <span data-pt="Ideia Central" data-en="Core Idea">Ideia Central</span></h2>
+      <p data-pt="Fowler observa que muitas experiências bem-sucedidas com microsserviços começaram com um monólito que depois foi dividido, enquanto muitos projetos que começaram diretamente com microsserviços enfrentaram sérias dificuldades. Uma razão é que, no início, costuma ser difícil definir fronteiras estáveis entre serviços; mudar funcionalidades de um serviço para outro tende a ser mais difícil do que refatorar dentro de um monólito." data-en="Fowler observes that many successful microservices stories began with a monolith that was later split, while many projects started directly with microservices ran into serious difficulties. One reason is that stable service boundaries are often hard to define early on; moving functionality between services tends to be harder than refactoring within a monolith.">Fowler observa que muitas experiências bem-sucedidas com microsserviços começaram com um monólito que depois foi dividido, enquanto muitos projetos que começaram diretamente com microsserviços enfrentaram sérias dificuldades. Uma razão é que, no início, costuma ser difícil definir fronteiras estáveis entre serviços; mudar funcionalidades de um serviço para outro tende a ser mais difícil do que refatorar dentro de um monólito.</p>
+      
+      <div class="highlight-box violet">
+        <p data-pt="Em síntese: começar com um monólito bem modularizado permite aprender sobre o domínio antes de assumir os custos e a dificuldade de alterar fronteiras entre microsserviços. Fowler apresenta essa orientação como uma recomendação cautelosa, não como uma regra universal." data-en="In summary: starting with a well-modularized monolith allows the team to learn about the domain before taking on the cost and difficulty of changing microservice boundaries. Fowler presents this as a cautious recommendation, not a universal rule.">Em síntese: começar com um monólito bem modularizado permite aprender sobre o domínio antes de assumir os custos e a dificuldade de alterar fronteiras entre microsserviços. Fowler apresenta essa orientação como uma recomendação cautelosa, não como uma regra universal.</p>
+      </div>
+
+      <p data-pt="Fowler observa que muitas experiências bem-sucedidas com microsserviços começaram com um monólito que depois foi dividido, enquanto diversos projetos iniciados diretamente com microsserviços enfrentaram dificuldades. A razão principal é que, no começo, é difícil conhecer o suficiente o domínio para definir fronteiras estáveis; mudar funcionalidades de um serviço para outro tende a ser mais difícil do que refatorar dentro de um monólito. Além disso, microsserviços têm um custo operacional que pode atrasar a aprendizagem e as primeiras entregas." data-en="Fowler observes that many successful microservices stories began with a monolith that was later split, while many projects started directly with microservices ran into difficulties. The main reason is that early on it is hard to understand the domain well enough to define stable boundaries; moving functionality between services tends to be harder than refactoring within a monolith. Microservices also carry operational overhead that can slow learning and early delivery.">Fowler observa que muitas experiências bem-sucedidas com microsserviços começaram com um monólito que depois foi dividido, enquanto diversos projetos iniciados diretamente com microsserviços enfrentaram dificuldades. A razão principal é que, no começo, é difícil conhecer o suficiente o domínio para definir fronteiras estáveis; mudar funcionalidades de um serviço para outro tende a ser mais difícil do que refatorar dentro de um monólito. Além disso, microsserviços têm um custo operacional que pode atrasar a aprendizagem e as primeiras entregas.</p>
+
+      <p data-pt="Fowler descreve algumas formas de aplicar a estratégia: manter o monólito modular e depois extrair serviços; retirar gradualmente serviços das bordas, mantendo um núcleo monolítico; substituir o monólito quando isso fizer sentido; ou começar com poucos serviços maiores e dividi-los quando as fronteiras estiverem mais estáveis. Ele também apresenta o argumento contrário: equipes experientes ou projetos de substituição podem optar por microsserviços desde o início. O próprio Fowler ressalta que as evidências disponíveis eram limitadas e que sua recomendação era provisória." data-en="Fowler describes several ways to apply the strategy: keep the monolith modular and later extract services; gradually peel services from the edges while retaining a monolithic core; replace the monolith when appropriate; or start with a few larger services and split them when boundaries become more stable. He also presents the counterargument: experienced teams or replacement projects may choose microservices from the start. Fowler notes that the available evidence was limited and his recommendation was tentative.">Fowler descreve algumas formas de aplicar a estratégia: manter o monólito modular e depois extrair serviços; retirar gradualmente serviços das bordas, mantendo um núcleo monolítico; substituir o monólito quando isso fizer sentido; ou começar com poucos serviços maiores e dividi-los quando as fronteiras estiverem mais estáveis. Ele também apresenta o argumento contrário: equipes experientes ou projetos de substituição podem optar por microsserviços desde o início. O próprio Fowler ressalta que as evidências disponíveis eram limitadas e que sua recomendação era provisória.</p>
+    </section>
+
+    <section class="diagram-section reveal" aria-labelledby="diagram-title">
+      <div class="diagram-heading">
+        <h2 id="diagram-title" data-pt="Da unidade aos módulos" data-en="From one unit to modules">Da unidade aos módulos</h2>
+        <span>FIG. 01 / DECOMPOSITION</span>
+      </div>
+      <figure class="architecture-plate">
+        <svg viewBox="0 0 720 240" role="img" aria-labelledby="mono-svg-title mono-svg-desc">
+          <title id="mono-svg-title">Monólito evoluindo para módulos</title>
+          <desc id="mono-svg-desc">Um bloco de aplicação único se transforma em três módulos internos separados por fronteiras claras.</desc>
+          <defs><marker id="mono-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="#D45D35"/></marker></defs>
+          <g fill="none" stroke="#1F3A4D" stroke-width="1.2"><path d="M22 28H698" stroke-dasharray="3 6" opacity=".28"/><path d="M22 207H698" stroke-dasharray="3 6" opacity=".28"/><rect x="28" y="65" width="190" height="105" fill="#DCE7E8"/><rect x="502" y="65" width="190" height="105" fill="#FFFDF7"/></g>
+          <g fill="#1F3A4D" font-family="monospace" font-size="11"><text x="28" y="50">01 / START</text><text x="502" y="50">02 / EVOLVE</text><text x="123" y="107" text-anchor="middle" font-size="15" font-weight="bold">APPLICATION</text><text x="123" y="128" text-anchor="middle">one deployable unit</text></g>
+          <path d="M238 117H477" stroke="#D45D35" stroke-width="2" marker-end="url(#mono-arrow)"/><text x="358" y="103" fill="#9D4427" text-anchor="middle" font-family="monospace" font-size="10">DEFINE BOUNDARIES</text>
+          <g stroke="#1F3A4D" stroke-width="1.2"><rect x="516" y="78" width="76" height="78" fill="#DCE7E8"/><rect x="600" y="78" width="78" height="36" fill="#F3DFD4"/><rect x="600" y="120" width="78" height="36" fill="#E9E4D8"/></g>
+          <g fill="#1F3A4D" font-family="monospace" font-size="9" text-anchor="middle"><text x="554" y="111">CORE</text><text x="639" y="100">ORDERS</text><text x="639" y="142">BILLING</text></g>
+          <g stroke="#D45D35" stroke-width="1"><path d="M28 184V194H218V184"/><path d="M502 184V194H692V184"/></g>
+          <g fill="#53616B" font-family="monospace" font-size="10"><text x="28" y="222">KEEP IT SIMPLE</text><text x="502" y="222">SPLIT WHEN JUSTIFIED</text></g>
+        </svg>
+        <figcaption><span>ARCHITECTURE NOTE / 01</span><span data-pt="Um deploy, módulos bem definidos" data-en="One deploy, well-defined modules">Um deploy, módulos bem definidos</span></figcaption>
+      </figure>
+    </section>
+
+    <!-- Pros and Cons -->
+    <section class="content-section reveal">
+      <h2><span class="icon">02</span> <span data-pt="Vantagens e Desvantagens" data-en="Advantages and Disadvantages">Vantagens e Desvantagens</span></h2>
+      <p data-pt="O post sustenta principalmente os benefícios de reduzir a complexidade inicial e aprender as fronteiras antes de separar serviços. Alguns pontos abaixo são consequências práticas inferidas pela equipe, não afirmações diretas do autor." data-en="The post mainly supports the benefits of reducing initial complexity and learning boundaries before separating services. Some items below are practical implications inferred by the team, not direct claims by the author.">O post sustenta principalmente os benefícios de reduzir a complexidade inicial e aprender as fronteiras antes de separar serviços. Alguns pontos abaixo são consequências práticas inferidas pela equipe, não afirmações diretas do autor.</p>
+      <div class="pros-cons">
+        <div class="pros-card">
+          <h3><span data-pt="Vantagens" data-en="Advantages">Vantagens</span></h3>
+          <ul>
+            <li data-pt="Simplicidade inicial: deploy, testes e debugging são muito mais simples em um monólito." data-en="Initial simplicity: deployment, testing and debugging are much simpler in a monolith.">Simplicidade inicial: deploy, testes e debugging são muito mais simples em um monólito.</li>
+            <li data-pt="Menor custo operacional no começo — sem orquestração de containers, sem service mesh, sem tracing distribuído." data-en="Lower operational cost at the start — no container orchestration, no service mesh, no distributed tracing.">Menor custo operacional no começo — sem orquestração de containers, sem service mesh, sem tracing distribuído.</li>
+            <li data-pt="Permite aprender o domínio antes de tomar decisões de fronteira irreversíveis." data-en="Allows learning the domain before making irreversible boundary decisions.">Permite aprender o domínio antes de tomar decisões de fronteira irreversíveis.</li>
+            <li data-pt="Refatoração interna é muito mais fácil do que refatorar fronteiras entre serviços." data-en="Internal refactoring is much easier than refactoring boundaries between services.">Refatoração interna é muito mais fácil do que refatorar fronteiras entre serviços.</li>
+            <li data-pt="Time to market mais rápido nas fases iniciais do produto." data-en="Faster time to market in the early phases of the product.">Time to market mais rápido nas fases iniciais do produto.</li>
+          </ul>
+        </div>
+        <div class="cons-card">
+          <h3><span data-pt="Desvantagens" data-en="Disadvantages">Desvantagens</span></h3>
+          <ul>
+            <li data-pt="Risco de gerar um &lsquo;big ball of mud&rsquo; se a modularidade interna não for mantida com disciplina." data-en="Risk of generating a 'big ball of mud' if internal modularity is not maintained with discipline.">Risco de gerar um "big ball of mud" se a modularidade interna não for mantida com disciplina.</li>
+            <li data-pt="A decomposição posterior pode ser difícil se os módulos estiverem muito acoplados." data-en="Later decomposition can be difficult if modules are tightly coupled.">A decomposição posterior pode ser difícil se os módulos estiverem muito acoplados.</li>
+            <li data-pt="Um monólito pode exigir que a aplicação seja implantada como uma unidade, mesmo quando apenas parte dela muda; o artigo, porém, não apresenta isso como argumento central contra monólitos." data-en="A monolith may require deploying the application as one unit even when only part of it changes; however, the article does not present this as a central argument against monoliths.">Um monólito pode exigir que a aplicação seja implantada como uma unidade, mesmo quando apenas parte dela muda; o artigo, porém, não apresenta isso como argumento central contra monólitos.</li>
+            <li data-pt="Se o monólito não for mantido modular, dependências entre módulos podem tornar a decomposição posterior difícil ou desorganizada." data-en="If the monolith is not kept modular, dependencies between modules can make later decomposition difficult or messy.">Se o monólito não for mantido modular, dependências entre módulos podem tornar a decomposição posterior difícil ou desorganizada.</li>
+            <li data-pt="Pode criar uma falsa sensação de que microsserviços nunca serão necessários." data-en="May create a false sense that microservices will never be needed.">Pode criar uma falsa sensação de que microsserviços nunca serão necessários.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Project Management Impact -->
+    <section class="content-section reveal">
+      <h2><span class="icon">03</span> <span data-pt="Impacto na Gestão do Projeto" data-en="Project Management Impact">Impacto na Gestão do Projeto</span></h2>
+      <p data-pt="A decisão de começar com um monólito ou com microsserviços afeta diretamente quatro pilares críticos da gestão de projetos:" data-en="The decision to start with a monolith or with microservices directly affects four critical pillars of project management:">A decisão de começar com um monólito ou com microsserviços afeta diretamente quatro pilares críticos da gestão de projetos:</p>
+      <div class="impact-grid">
+        <div class="impact-item">
+          <div class="impact-icon">01 /</div>
+          <div class="impact-label" data-pt="Prazo" data-en="Timeline">Prazo</div>
+          <p class="impact-text" data-pt="Começar com um monólito pode acelerar as primeiras entregas e o ciclo de feedback, pois evita assumir desde o início o custo operacional de vários serviços. A vantagem depende do contexto e não elimina a necessidade de uma boa estrutura interna." data-en="Starting with a monolith can speed up early delivery and feedback cycles by avoiding the operational overhead of multiple services from the outset. The benefit depends on context and does not remove the need for good internal structure.">Começar com um monólito pode acelerar as primeiras entregas e o ciclo de feedback, pois evita assumir desde o início o custo operacional de vários serviços. A vantagem depende do contexto e não elimina a necessidade de uma boa estrutura interna.</p>
+        </div>
+        <div class="impact-item">
+          <div class="impact-icon">02 /</div>
+          <div class="impact-label" data-pt="Custo" data-en="Cost">Custo</div>
+          <p class="impact-text" data-pt="Microsserviços têm um custo operacional adicional para gerenciar vários serviços. Começar com um monólito pode evitar esse custo enquanto a utilidade do produto e as fronteiras do domínio ainda estão sendo descobertas." data-en="Microservices carry extra operational cost because multiple services must be managed. Starting with a monolith can avoid that cost while the product's usefulness and domain boundaries are still being discovered.">Microsserviços têm um custo operacional adicional para gerenciar vários serviços. Começar com um monólito pode evitar esse custo enquanto a utilidade do produto e as fronteiras do domínio ainda estão sendo descobertas.</p>
+        </div>
+        <div class="impact-item">
+          <div class="impact-icon">03 /</div>
+          <div class="impact-label" data-pt="Equipe" data-en="Team">Equipe</div>
+          <p class="impact-text" data-pt="Equipes menores e menos experientes podem ser produtivas com monólitos. Não é necessário expertise em sistemas distribuídos desde o início. Conforme o time cresce, a decomposição pode acompanhar o crescimento." data-en="Smaller and less experienced teams can be productive with monoliths. Distributed systems expertise is not needed from the start. As the team grows, decomposition can follow the growth.">Equipes menores e menos experientes podem ser produtivas com monólitos. Não é necessário expertise em sistemas distribuídos desde o início. Conforme o time cresce, a decomposição pode acompanhar o crescimento.</p>
+        </div>
+        <div class="impact-item">
+          <div class="impact-icon">04 /</div>
+          <div class="impact-label" data-pt="Riscos" data-en="Risks">Riscos</div>
+          <p class="impact-text" data-pt="Menor risco de falhas de arquitetura custosas no início. O principal risco é negligenciar a modularidade interna, criando acoplamento que dificulte a futura decomposição. Mitigação: code reviews focados em fronteiras de módulo." data-en="Lower risk of costly architecture failures at the start. The main risk is neglecting internal modularity, creating coupling that makes future decomposition difficult. Mitigation: code reviews focused on module boundaries.">Menor risco de falhas de arquitetura custosas no início. O principal risco é negligenciar a modularidade interna, criando acoplamento que dificulte a futura decomposição. Mitigação: code reviews focados em fronteiras de módulo.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Original Link -->
+    <section class="content-section reveal">
+      <h2><span class="icon">04</span> <span data-pt="Post Original" data-en="Original Post">Post Original</span></h2>
+      <a href="https://martinfowler.com/bliki/MonolithFirst.html" target="_blank" rel="noopener noreferrer" class="original-link">
+        <span data-pt="Ler o artigo original em martinfowler.com" data-en="Read the original article on martinfowler.com">Ler o artigo original em martinfowler.com</span>
+        <span class="arrow">→</span>
+      </a>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p data-pt="Arquitetura de Software &amp; Gestão de Projetos — 2026" data-en="Software Architecture &amp; Project Management — 2026">Arquitetura de Software &amp; Gestão de Projetos — 2026</p>
+    <div class="ai-disclaimer">
+      <span>⚠️</span>
+      <span data-pt="Conteúdo gerado com auxílio de IA — revisado pela equipe" data-en="Content generated with AI assistance — reviewed by the team">Conteúdo gerado com auxílio de IA — revisado pela equipe</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

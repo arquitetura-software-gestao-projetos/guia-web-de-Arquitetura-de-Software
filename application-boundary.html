@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Application Boundary — Arquitetura de Software</title>
+  <meta name="description" content="Análise do conceito Application Boundary de Martin Fowler: a fronteira de uma aplicação é mais social do que técnica.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-content">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">AS</div>
+        <span>ArqSoft</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" data-pt="Início" data-en="Home">Início</a></li>
+        <li><a href="monolith-first.html" data-pt="Monolith First" data-en="Monolith First">Monolith First</a></li>
+        <li><a href="application-boundary.html" class="active" data-pt="App Boundary" data-en="App Boundary">App Boundary</a></li>
+        <li><a href="serverless.html" data-pt="Serverless" data-en="Serverless">Serverless</a></li>
+      </ul>
+      <div class="lang-toggle">
+        <button class="lang-btn active" id="btnPt" onclick="setLang('pt')">PT</button>
+        <button class="lang-btn" id="btnEn" onclick="setLang('en')">EN</button>
+      </div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
+    </div>
+  </nav>
+
+  <!-- Article Hero -->
+  <header class="article-hero blue" data-index="2">
+    <div class="article-hero-inner">
+      <div class="article-meta">
+        <span class="article-tag" data-pt="Fronteiras" data-en="Boundaries">Fronteiras</span>
+        <span class="article-author">Martin Fowler · 2003</span>
+      </div>
+      <h1 data-pt="Application Boundary" data-en="Application Boundary">Application Boundary</h1>
+      <p class="subtitle" data-pt="O que delimita uma &lsquo;aplicação&rsquo; é mais uma questão social — de equipes, organizações e responsabilidades — do que uma questão técnica." data-en="What delimits an 'application' is more a social question — of teams, organizations and responsibilities — than a technical one.">O que delimita uma "aplicação" é mais uma questão social — de equipes, organizações e responsabilidades — do que uma questão técnica.</p>
+    </div>
+  </header>
+
+  <!-- Article Body -->
+  <main class="article-body">
+
+    <!-- Central Idea -->
+    <section class="content-section reveal">
+      <h2><span class="icon">01</span> <span data-pt="Ideia Central" data-en="Core Idea">Ideia Central</span></h2>
+      <p data-pt="Fowler questiona a pergunta aparentemente simples: &lsquo;o que é uma aplicação?&rsquo;. Ele argumenta que essa pergunta não tem uma resposta puramente técnica. Em vez disso, a definição de onde uma aplicação começa e termina é fundamentalmente social — está ligada a como equipes se organizam, quem é responsável por qual código, e como a organização divide seus domínios de negócio." data-en="Fowler questions the seemingly simple question: 'what is an application?'. He argues that this question does not have a purely technical answer. Instead, the definition of where an application begins and ends is fundamentally social — it is tied to how teams organize themselves, who is responsible for which code, and how the organization divides its business domains.">Fowler questiona a pergunta aparentemente simples: "o que é uma aplicação?". Ele argumenta que essa pergunta não tem uma resposta puramente técnica. Em vez disso, a definição de onde uma aplicação começa e termina é fundamentalmente social — está ligada a como equipes se organizam, quem é responsável por qual código, e como a organização divide seus domínios de negócio.</p>
+
+      <div class="highlight-box blue">
+        <p data-pt="Em síntese: uma aplicação pode ser entendida como uma unidade de código pelos desenvolvedores, uma unidade de funcionalidades pelos clientes ou uma unidade de orçamento por quem financia o trabalho. Essas fronteiras são convenções sociais e podem ser traçadas de maneiras diferentes." data-en="In summary: an application may be seen as a unit of code by developers, a unit of functionality by customers, or a budget unit by those funding the work. These boundaries are social conventions and can be drawn in different ways.">Em síntese: uma aplicação pode ser entendida como uma unidade de código pelos desenvolvedores, uma unidade de funcionalidades pelos clientes ou uma unidade de orçamento por quem financia o trabalho. Essas fronteiras são convenções sociais e podem ser traçadas de maneiras diferentes.</p>
+      </div>
+
+      <p data-pt="O post de Fowler não desenvolve a Lei de Conway; qualquer relação com ela é uma interpretação da equipe. O ponto central é que diferentes grupos podem definir uma aplicação de modos distintos: como uma unidade de código para desenvolvedores, uma unidade funcional para clientes ou uma unidade de orçamento para quem financia o trabalho." data-en="Fowler's post does not develop Conway's Law; any connection to it is the team's interpretation. The central point is that different groups may define an application differently: as a unit of code for developers, a functional unit for customers, or a budget unit for those funding the work.">O post de Fowler não desenvolve a Lei de Conway; qualquer relação com ela é uma interpretação da equipe. O ponto central é que diferentes grupos podem definir uma aplicação de modos distintos: como uma unidade de código para desenvolvedores, uma unidade funcional para clientes ou uma unidade de orçamento para quem financia o trabalho.</p>
+
+      <p data-pt="Na prática, as fronteiras podem ser desenhadas de várias maneiras; o post ressalta que elas são influenciadas principalmente pelas relações humanas e pela política organizacional, e não apenas por critérios técnicos ou funcionais. Por isso, ao discutir uma fronteira de aplicação, é útil identificar quem a considera uma unidade e por quê." data-en="In practice, boundaries can be drawn in many ways; the post emphasizes that they are influenced mainly by human relationships and organizational politics, not only by technical or functional criteria. When discussing an application boundary, it is therefore useful to identify who sees it as a unit and why.">Na prática, as fronteiras podem ser desenhadas de várias maneiras; o post ressalta que elas são influenciadas principalmente pelas relações humanas e pela política organizacional, e não apenas por critérios técnicos ou funcionais. Por isso, ao discutir uma fronteira de aplicação, é útil identificar quem a considera uma unidade e por quê.</p>
+    </section>
+
+    <section class="diagram-section reveal" aria-labelledby="diagram-title">
+      <div class="diagram-heading">
+        <h2 id="diagram-title" data-pt="Fronteiras técnicas e humanas" data-en="Technical and human boundaries">Fronteiras técnicas e humanas</h2>
+        <span>FIG. 02 / OWNERSHIP</span>
+      </div>
+      <figure class="architecture-plate">
+        <svg viewBox="0 0 720 240" role="img" aria-labelledby="boundary-svg-title boundary-svg-desc">
+          <title id="boundary-svg-title">Fronteiras entre equipes e aplicações</title>
+          <desc id="boundary-svg-desc">Duas equipes, cada uma responsável por uma aplicação, comunicam-se por uma interface definida.</desc>
+          <defs><marker id="boundary-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="#456B78"/></marker></defs>
+          <g fill="none" stroke="#1F3A4D" stroke-width="1.2"><rect x="28" y="43" width="270" height="142" fill="#DCE7E8"/><rect x="422" y="43" width="270" height="142" fill="#FFFDF7"/><path d="M360 35V193" stroke="#D45D35" stroke-dasharray="4 5" stroke-width="2"/></g>
+          <g fill="#53616B" font-family="monospace" font-size="10"><text x="28" y="28">TEAM A / OWNERSHIP</text><text x="422" y="28">TEAM B / OWNERSHIP</text></g>
+          <g fill="#1F3A4D" font-family="monospace" text-anchor="middle"><text x="163" y="77" font-size="11">APPLICATION A</text><text x="557" y="77" font-size="11">APPLICATION B</text></g>
+          <g stroke="#1F3A4D" stroke-width="1"><rect x="58" y="95" width="210" height="58" fill="#FFFDF7"/><rect x="452" y="95" width="210" height="58" fill="#DCE7E8"/></g>
+          <g fill="#1F3A4D" font-family="monospace" font-size="12" text-anchor="middle"><text x="163" y="119">DOMAIN / A</text><text x="163" y="137" font-size="9">CODE + DECISIONS</text><text x="557" y="119">DOMAIN / B</text><text x="557" y="137" font-size="9">CODE + DECISIONS</text></g>
+          <path d="M270 124H445" stroke="#456B78" stroke-width="2" marker-end="url(#boundary-arrow)"/><rect x="307" y="105" width="106" height="35" fill="#F3DFD4" stroke="#D45D35"/><text x="360" y="119" fill="#8E3D22" font-family="monospace" font-size="9" text-anchor="middle">CONTRACT</text><text x="360" y="131" fill="#8E3D22" font-family="monospace" font-size="8" text-anchor="middle">API / EVENTS</text>
+          <g fill="#53616B" font-family="monospace" font-size="10"><text x="28" y="215">CLEAR RESPONSIBILITY</text><text x="422" y="215">EXPLICIT INTERFACE</text></g>
+        </svg>
+        <figcaption><span>ARCHITECTURE NOTE / 02</span><span data-pt="As relações humanas também influenciam as fronteiras" data-en="Human relationships also influence boundaries">As relações humanas também influenciam as fronteiras</span></figcaption>
+      </figure>
+    </section>
+
+    <!-- Pros and Cons -->
+    <section class="content-section reveal">
+      <h2><span class="icon">02</span> <span data-pt="Vantagens e Desvantagens" data-en="Advantages and Disadvantages">Vantagens e Desvantagens</span></h2>
+      <p data-pt="O post explica como as fronteiras são definidas, mas não apresenta uma lista formal de vantagens e desvantagens. Os itens abaixo são consequências possíveis, interpretadas pela equipe a partir dessa ideia." data-en="The post explains how boundaries are defined, but does not provide a formal list of advantages and disadvantages. The items below are possible consequences interpreted by the team from that idea.">O post explica como as fronteiras são definidas, mas não apresenta uma lista formal de vantagens e desvantagens. Os itens abaixo são consequências possíveis, interpretadas pela equipe a partir dessa ideia.</p>
+      <div class="pros-cons">
+        <div class="pros-card">
+          <h3><span data-pt="Vantagens" data-en="Advantages">Vantagens</span></h3>
+          <ul>
+            <li data-pt="Alinhamento entre arquitetura e estrutura organizacional reduz atrito entre equipes." data-en="Alignment between architecture and organizational structure reduces friction between teams.">Alinhamento entre arquitetura e estrutura organizacional reduz atrito entre equipes.</li>
+            <li data-pt="Cada equipe tem propriedade clara sobre seu domínio, facilitando autonomia e responsabilidade." data-en="Each team has clear ownership over their domain, facilitating autonomy and responsibility.">Cada equipe tem propriedade clara sobre seu domínio, facilitando autonomia e responsabilidade.</li>
+            <li data-pt="Decisões arquiteturais passam a considerar o contexto humano, e não apenas o técnico." data-en="Architectural decisions begin to consider the human context, not just the technical one.">Decisões arquiteturais passam a considerar o contexto humano, e não apenas o técnico.</li>
+            <li data-pt="Facilita a comunicação e a definição de interfaces claras entre sistemas." data-en="Facilitates communication and the definition of clear interfaces between systems.">Facilita a comunicação e a definição de interfaces claras entre sistemas.</li>
+            <li data-pt="Evita fronteiras técnicas artificiais que não refletem a realidade organizacional." data-en="Avoids artificial technical boundaries that do not reflect organizational reality.">Evita fronteiras técnicas artificiais que não refletem a realidade organizacional.</li>
+          </ul>
+        </div>
+        <div class="cons-card">
+          <h3><span data-pt="Desvantagens" data-en="Disadvantages">Desvantagens</span></h3>
+          <ul>
+            <li data-pt="Estruturas organizacionais podem mudar, exigindo reestruturação da arquitetura." data-en="Organizational structures can change, requiring architecture restructuring.">Estruturas organizacionais podem mudar, exigindo reestruturação da arquitetura.</li>
+            <li data-pt="Como análise da equipe, estruturas e relações de comunicação inadequadas podem dificultar o alinhamento entre organização e arquitetura; isso não é uma conclusão explicitamente formulada nesse post." data-en="As the team's analysis, unsuitable organizational structures and communication patterns can make alignment between organization and architecture harder; this is not a conclusion explicitly stated in this post.">Como análise da equipe, estruturas e relações de comunicação inadequadas podem dificultar o alinhamento entre organização e arquitetura; isso não é uma conclusão explicitamente formulada nesse post.</li>
+            <li data-pt="Requer maturidade organizacional para definir domínios e responsabilidades de forma clara." data-en="Requires organizational maturity to define domains and responsibilities clearly.">Requer maturidade organizacional para definir domínios e responsabilidades de forma clara.</li>
+            <li data-pt="Pode gerar fronteiras subótimas quando equipes são definidas por tecnologia em vez de domínio de negócio." data-en="Can generate suboptimal boundaries when teams are defined by technology instead of business domain.">Pode gerar fronteiras subótimas quando equipes são definidas por tecnologia em vez de domínio de negócio.</li>
+            <li data-pt="Ambiguidade: sem uma definição clara de &lsquo;aplicação&rsquo;, a comunicação entre stakeholders pode ser confusa." data-en="Ambiguity: without a clear definition of 'application', communication between stakeholders can be confusing.">Ambiguidade: sem uma definição clara de "aplicação", a comunicação entre stakeholders pode ser confusa.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Project Management Impact -->
+    <section class="content-section reveal">
+      <h2><span class="icon">03</span> <span data-pt="Impacto na Gestão do Projeto" data-en="Project Management Impact">Impacto na Gestão do Projeto</span></h2>
+      <p data-pt="Entender que a fronteira de uma aplicação é social transforma como gestores de projeto devem planejar e organizar o trabalho:" data-en="Understanding that the boundary of an application is social transforms how project managers should plan and organize work:">Entender que a fronteira de uma aplicação é social transforma como gestores de projeto devem planejar e organizar o trabalho:</p>
+      <div class="impact-grid">
+        <div class="impact-item">
+          <div class="impact-icon">01 /</div>
+          <div class="impact-label" data-pt="Prazo" data-en="Timeline">Prazo</div>
+          <p class="impact-text" data-pt="Se diferentes grupos discordarem sobre o que faz parte de uma aplicação, o alinhamento de escopo e responsabilidades pode exigir reuniões e decisões adicionais, afetando o cronograma. Identificar essas perspectivas cedo é uma medida de gestão sugerida pela equipe." data-en="If different groups disagree about what belongs to an application, aligning scope and responsibilities may require additional discussion and decisions, affecting the schedule. Identifying these perspectives early is a management measure suggested by the team.">Se diferentes grupos discordarem sobre o que faz parte de uma aplicação, o alinhamento de escopo e responsabilidades pode exigir conversas e decisões adicionais, afetando o cronograma. Identificar essas perspectivas cedo é uma medida de gestão sugerida pela equipe.</p>
+        </div>
+        <div class="impact-item">
+          <div class="impact-icon">02 /</div>
+          <div class="impact-label" data-pt="Custo" data-en="Cost">Custo</div>
+          <p class="impact-text" data-pt="Se os grupos não concordarem sobre o que pertence à aplicação, pode haver sobreposição de trabalho ou lacunas de responsabilidade. Esclarecer as fronteiras pode reduzir esse risco, mas não garante economia automática de pessoas ou orçamento." data-en="If groups disagree about what belongs to an application, work may overlap or responsibilities may be missed. Clarifying boundaries can reduce this risk, but does not guarantee automatic savings in staffing or budget.">Se os grupos não concordarem sobre o que pertence à aplicação, pode haver sobreposição de trabalho ou lacunas de responsabilidade. Esclarecer as fronteiras pode reduzir esse risco, mas não garante economia automática de pessoas ou orçamento.</p>
+        </div>
+        <div class="impact-item">
+          <div class="impact-icon">03 /</div>
+          <div class="impact-label" data-pt="Equipe" data-en="Team">Equipe</div>
+          <p class="impact-text" data-pt="A equipe precisa reconhecer que desenvolvedores, clientes e responsáveis pelo orçamento podem entender “aplicação” de maneiras diferentes. Explicitar essas perspectivas ajuda a definir responsabilidades e a organizar a comunicação; essa é uma implicação para a gestão, não uma regra técnica prescrita pelo post." data-en="The team should recognize that developers, customers, and budget owners may understand “application” differently. Making these perspectives explicit helps define responsibilities and organize communication; this is a management implication, not a technical rule prescribed by the post.">A equipe precisa reconhecer que desenvolvedores, clientes e responsáveis pelo orçamento podem entender “aplicação” de maneiras diferentes. Explicitar essas perspectivas ajuda a definir responsabilidades e a organizar a comunicação; essa é uma implicação para a gestão, não uma regra técnica prescrita pelo post.</p>
+        </div>
+        <div class="impact-item">
+          <div class="impact-icon">04 /</div>
+          <div class="impact-label" data-pt="Riscos" data-en="Risks">Riscos</div>
+          <p class="impact-text" data-pt="O risco de gestão é que desenvolvedores, clientes e responsáveis pelo orçamento usem definições diferentes de “aplicação”, dificultando decisões de escopo, responsabilidade e prioridade. Como medida proposta pela equipe, alinhe esses entendimentos com as partes interessadas e registre as decisões; o post não prescreve uma técnica específica para isso." data-en="The management risk is that developers, customers, and budget owners use different definitions of “application,” making scope, ownership, and priority decisions harder. As a team-proposed measure, align these understandings with stakeholders and document decisions; the post does not prescribe a specific technique for doing this.">O risco de gestão é que desenvolvedores, clientes e responsáveis pelo orçamento usem definições diferentes de “aplicação”, dificultando decisões de escopo, responsabilidade e prioridade. Como medida proposta pela equipe, alinhe esses entendimentos com as partes interessadas e registre as decisões; o post não prescreve uma técnica específica para isso.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Original Link -->
+    <section class="content-section reveal">
+      <h2><span class="icon">04</span> <span data-pt="Post Original" data-en="Original Post">Post Original</span></h2>
+      <a href="https://martinfowler.com/bliki/ApplicationBoundary.html" target="_blank" rel="noopener noreferrer" class="original-link">
+        <span data-pt="Ler o artigo original em martinfowler.com" data-en="Read the original article on martinfowler.com">Ler o artigo original em martinfowler.com</span>
+        <span class="arrow">→</span>
+      </a>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p data-pt="Arquitetura de Software &amp; Gestão de Projetos — 2026" data-en="Software Architecture &amp; Project Management — 2026">Arquitetura de Software &amp; Gestão de Projetos — 2026</p>
+    <div class="ai-disclaimer">
+      <span>⚠️</span>
+      <span data-pt="Conteúdo gerado com auxílio de IA — revisado pela equipe" data-en="Content generated with AI assistance — reviewed by the team">Conteúdo gerado com auxílio de IA — revisado pela equipe</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
